@@ -14,7 +14,7 @@ const RegionRootComponent = () => {
     }
 
     // import only if region is valid
-    const DynamicLandingPage = dynamic(() => import(`@/components/${slug?.region}/landing`))
+    const DynamicLandingPage = dynamic(() => import(`@/components/landing/${slug?.region}`))
 
     return (
         <Fragment>
