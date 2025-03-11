@@ -1,13 +1,13 @@
 import React from 'react';
 import { usePathname } from 'next/navigation';
-import { checkPathname } from '@/utils/helpers';
+import { isRouteValid } from '@/utils/helpers';
 import PageNotFound from '@/components/common/PageNotFound';
 
 const CommonAboutPage = () => {
 
     const pathname = usePathname()
 
-    if (checkPathname(pathname)) {
+    if (!isRouteValid(pathname)) {
         return (
             <PageNotFound />
         )

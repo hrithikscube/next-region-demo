@@ -1,36 +1,62 @@
+// import dynamic from 'next/dynamic';
+// import React, { Fragment } from 'react';
+// import { useParams } from 'next/navigation';
+
+// const RegionRootComponent = () => {
+
+//     const slug = useParams()
+
+//     // import only if region is valid
+//     const DynamicLandingPage = dynamic(() => import(`@/components/landing/${slug?.region}`))
+
+//     return (
+//         <Fragment>
+//             <DynamicLandingPage />
+//         </Fragment>
+//     )
+// }
+
+// export default RegionRootComponent
+
+// export async function getServerSideProps() {
+
+//     let data = {}
+
+//     return {
+//         props: data
+//     }
+
+// }
+
 import dynamic from 'next/dynamic';
 import React, { Fragment } from 'react';
 import { useParams } from 'next/navigation';
-import { checkPathname } from '@/utils/helpers';
+import { validRegions } from '@/utils/helpers';
 import PageNotFound from '@/components/common/PageNotFound';
 
-const RegionRootComponent = () => {
-    const slug = useParams()
 
-    if (checkPathname(slug?.region)) {
-        return (
-            <PageNotFound />
-        )
+const RegionRootComponent = () => {
+    const slug = useParams();
+    const region = slug?.region;
+
+    if (!region || !validRegions.includes(region)) {
+        return <PageNotFound />;
     }
 
-    // import only if region is valid
-    const DynamicLandingPage = dynamic(() => import(`@/components/landing/${slug?.region}`))
+    // Dynamically import only if region is valid
+    const DynamicLandingPage = dynamic(() => import(`@/components/landing/${region}`));
 
     return (
         <Fragment>
             <DynamicLandingPage />
         </Fragment>
-    )
-}
+    );
+};
 
-export default RegionRootComponent
+export default RegionRootComponent;
 
 export async function getServerSideProps() {
-
-    let data = {}
-
     return {
-        props: data
-    }
-
+        props: {}, // Ensure props are returned to avoid Next.js errors
+    };
 }
