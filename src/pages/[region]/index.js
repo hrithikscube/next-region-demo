@@ -1,33 +1,3 @@
-// import dynamic from 'next/dynamic';
-// import React, { Fragment } from 'react';
-// import { useParams } from 'next/navigation';
-
-// const RegionRootComponent = () => {
-
-//     const slug = useParams()
-
-//     // import only if region is valid
-//     const DynamicLandingPage = dynamic(() => import(`@/components/landing/${slug?.region}`))
-
-//     return (
-//         <Fragment>
-//             <DynamicLandingPage />
-//         </Fragment>
-//     )
-// }
-
-// export default RegionRootComponent
-
-// export async function getServerSideProps() {
-
-//     let data = {}
-
-//     return {
-//         props: data
-//     }
-
-// }
-
 import dynamic from 'next/dynamic';
 import React, { Fragment } from 'react';
 import { useParams } from 'next/navigation';
